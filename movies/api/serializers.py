@@ -9,22 +9,7 @@ x = datetime.date.today()
 
 
 class MovieSerializers(serializers.Serializer):
-    id = serializers.IntegerField()
+    id = serializers.IntegerField(read_only = True)
     name = serializers.CharField()
-    description = serializers.TextField()
+    description = serializers.CharField()
     release = serializers.DateField()
-
-
-
-    def validate(self, data):
-
-        # if data['name']== data['description']:
-            # return response({'Sorry You can not give Name and Description value same'},status=status.HTTP_406_NOT_ACCEPTABLE)
-        if data['release']>= x:
-            return response({'Sorry You can not give relasedate in todays date or in past dates'},status=status.HTTP_406_NOT_ACCEPTABLE)
-        else:
-            return data
-    
-
-    def get(self,m):
-        pass
